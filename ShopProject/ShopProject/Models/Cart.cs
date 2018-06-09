@@ -12,6 +12,5 @@ namespace ShopProject.Models
 
         public int Amount { get; set; }
 
-
     }
 }
