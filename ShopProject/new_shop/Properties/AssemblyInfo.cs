@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Управление общими сведениями о сборке осуществляется следующим образом
 // набора атрибутов. Измените значения этих атрибутов для изменения сведений,
 // связанных с этой сборкой.
-[assembly: AssemblyTitle("new_shop")]
+[assembly: AssemblyTitle("ShopProject")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("new_shop")]
+[assembly: AssemblyProduct("ShopProject")]
 [assembly: AssemblyCopyright("© , 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

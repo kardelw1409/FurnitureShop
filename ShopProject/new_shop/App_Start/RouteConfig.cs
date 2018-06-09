@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace new_shop
+namespace ShopProject
 {
     public class RouteConfig
     {

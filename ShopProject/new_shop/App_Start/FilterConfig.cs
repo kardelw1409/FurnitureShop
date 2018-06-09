@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace new_shop
+namespace ShopProject
 {
     public class FilterConfig
     {
