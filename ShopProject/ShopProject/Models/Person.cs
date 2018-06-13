@@ -1,14 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
+using System.ComponentModel.DataAnnotations;
+ 
 namespace ShopProject.Models
 {
-    public class Person
+    public class RegisterModel
     {
-        public string Login { get; set; }
+        [Required]
+        public string Email { get; set; }
+
+        [Required]
+        public int Year { get; set; }
+
+        [Required]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
-        public string Role { get; set; }
+
+        [Required]
+        [Compare("Password", ErrorMessage = "Пароли не совпадают")]
+        [DataType(DataType.Password)]
+        public string PasswordConfirm { get; set; }
     }
 }
