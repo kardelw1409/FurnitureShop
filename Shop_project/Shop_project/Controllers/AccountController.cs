@@ -52,7 +52,7 @@ namespace Shop_project.Controllers
             }
         }
 
-        //
+    
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
@@ -61,7 +61,6 @@ namespace Shop_project.Controllers
             return View();
         }
 
-        //
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
@@ -73,8 +72,6 @@ namespace Shop_project.Controllers
                 return View(model);
             }
 
-            // Сбои при входе не приводят к блокированию учетной записи
-            // Чтобы ошибки при вводе пароля инициировали блокирование учетной записи, замените на shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
@@ -116,10 +113,9 @@ namespace Shop_project.Controllers
                 return View(model);
             }
 
-            // Приведенный ниже код защищает от атак методом подбора, направленных на двухфакторные коды. 
             // Если пользователь введет неправильные коды за указанное время, его учетная запись 
             // будет заблокирована на заданный период. 
-            // Параметры блокирования учетных записей можно настроить в IdentityConfig
+         
             var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
@@ -156,19 +152,11 @@ namespace Shop_project.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
-                    // Дополнительные сведения о том, как включить подтверждение учетной записи и сброс пароля, см. по адресу: http://go.microsoft.com/fwlink/?LinkID=320771
-                    // Отправка сообщения электронной почты с этой ссылкой
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Подтверждение учетной записи", "Подтвердите вашу учетную запись, щелкнув <a href=\"" + callbackUrl + "\">здесь</a>");
-
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
             }
 
-            // Появление этого сообщения означает наличие ошибки; повторное отображение формы
             return View(model);
         }
 
@@ -209,15 +197,8 @@ namespace Shop_project.Controllers
                     return View("ForgotPasswordConfirmation");
                 }
 
-                // Дополнительные сведения о том, как включить подтверждение учетной записи и сброс пароля, см. по адресу: http://go.microsoft.com/fwlink/?LinkID=320771
-                // Отправка сообщения электронной почты с этой ссылкой
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                // await UserManager.SendEmailAsync(user.Id, "Сброс пароля", "Сбросьте ваш пароль, щелкнув <a href=\"" + callbackUrl + "\">здесь</a>");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
-            // Появление этого сообщения означает наличие ошибки; повторное отображение формы
             return View(model);
         }
 
@@ -251,7 +232,6 @@ namespace Shop_project.Controllers
             var user = await UserManager.FindByNameAsync(model.Email);
             if (user == null)
             {
-                // Не показывать, что пользователь не существует
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
             }
             var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
