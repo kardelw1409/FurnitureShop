@@ -1,8 +1,11 @@
 ﻿
+using System.ComponentModel.DataAnnotations;
+
 namespace Show_project.Models
 {
     public class Furniture
     {
+        [Key]
         public int FurnitureId { get; set; }
 
         public string Title { get; set; }
