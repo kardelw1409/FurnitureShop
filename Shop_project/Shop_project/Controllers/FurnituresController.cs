@@ -16,6 +16,7 @@ namespace Shop_project.Controllers
         private ModelsDbContext db = new ModelsDbContext();
 
         // GET: Furnitures
+        [Authorize(Roles = "admin")]
         public ActionResult Index()
         {
             return View(db.Furnitures.ToList());
@@ -37,6 +38,7 @@ namespace Shop_project.Controllers
         }
 
         // GET: Furnitures/Create
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             ViewBag.Category = new SelectList(db.Categories, "CategoryId", "Title");
@@ -46,6 +48,7 @@ namespace Shop_project.Controllers
         // POST: Furnitures/Create
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "FurnitureId,Title,Price,Description,Color,Type,Category")] Furniture furniture)
@@ -61,6 +64,7 @@ namespace Shop_project.Controllers
         }
 
         // GET: Furnitures/Edit/5
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -78,6 +82,7 @@ namespace Shop_project.Controllers
         // POST: Furnitures/Edit/5
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "FurnitureId,Title,Price,Description,Color,Type")] Furniture furniture)
@@ -92,6 +97,7 @@ namespace Shop_project.Controllers
         }
 
         // GET: Furnitures/Delete/5
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -107,6 +113,7 @@ namespace Shop_project.Controllers
         }
 
         // POST: Furnitures/Delete/5
+        [Authorize(Roles = "admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

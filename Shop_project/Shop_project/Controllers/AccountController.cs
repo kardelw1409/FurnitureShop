@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Shop_project.Models;
+using System.Collections.Generic;
 
 namespace Shop_project.Controllers
 {
@@ -67,6 +68,7 @@ namespace Shop_project.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -151,7 +153,39 @@ namespace Shop_project.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    // если создание прошло успешно, то добавляем роль пользователя
+                    await UserManager.AddToRoleAsync(user.Id, "user");
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                    return RedirectToAction("Index", "Home");
+                }
+                AddErrors(result);
+            }
+
+            return View(model);
+        }
+
+        [AllowAnonymous]
+        public ActionResult Register_admin()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Register_admin(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var admin = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var result = await UserManager.CreateAsync(admin, model.Password);
+                if (result.Succeeded)
+                {
+                    // если создание прошло успешно, то добавляем роль пользователя
+                    await UserManager.AddToRoleAsync(admin.Id, "admin");
+                    await SignInManager.SignInAsync(admin, isPersistent: false, rememberBrowser: false);
+
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
