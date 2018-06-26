@@ -154,6 +154,7 @@ namespace Shop_project.Controllers
                 if (result.Succeeded)
                 {
                     // если создание прошло успешно, то добавляем роль пользователя
+                    
                     await UserManager.AddToRoleAsync(user.Id, "user");
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
@@ -214,7 +215,7 @@ namespace Shop_project.Controllers
         {
             return View();
         }
-
+        
         //
         // POST: /Account/ForgotPassword
         [HttpPost]

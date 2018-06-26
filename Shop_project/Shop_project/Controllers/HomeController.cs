@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shop_project.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +9,12 @@ namespace Shop_project.Controllers
 {
     public class HomeController : Controller
     {
+        private ModelsDbContext db = new ModelsDbContext();
         public ActionResult Index()
         {
-            return View();
+            ViewBag.Category = db.Categories.ToList();
+            var FurnituresList = db.Furnitures.ToList();   
+            return View(FurnituresList);
         }
 
         public ActionResult About()
