@@ -64,7 +64,7 @@ namespace Shop_project.Controllers
         //[Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "FurnitureId,Title,Price,Description,Color,Type,CategoryId")] Furniture furniture)
+        public ActionResult Create([Bind(Include = "FurnitureId,Title,Price,Description,Color,Type,CategoryId,ImageUrl")] Furniture furniture)
         {
             if (ModelState.IsValid)
             {
