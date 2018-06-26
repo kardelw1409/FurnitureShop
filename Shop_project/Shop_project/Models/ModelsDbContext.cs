@@ -9,7 +9,7 @@ namespace Shop_project.Models
 {
     public class ModelsDbContext : DbContext 
     {
-        public ModelsDbContext() : base("DefaultConection") { }
+        public ModelsDbContext() : base("DefaultConect") { }
 
         public DbSet<Furniture> Furnitures { get; set; }
 
@@ -17,7 +17,7 @@ namespace Shop_project.Models
 
         public DbSet<Category> Categories { get; set; }
 
-        public DbSet<Customer> Customers { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
 
         public DbSet<Order> Orders { get; set; }
     }

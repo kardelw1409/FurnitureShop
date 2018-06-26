@@ -1,58 +1,73 @@
 ﻿@model Show_project.Models.Furniture
 
+
 @{
-    ViewBag.Title = "Details";
+    ViewData["Title"] = "Details";
 }
 
 <h2>Details</h2>
 
 <div>
-    <h4>Furniture</h4>
+    <h4>@Model</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
+    <div class="container">
+        <div>
+            <div class="row">
+                <div class="col">
+                    <img class="leftside" src="@Model.ImageUrl" height="600" width="500" />
+                </div>
+                <div class="col">
+                    <dl>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Title)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Title)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Price)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Price)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Description)
+                        </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Color)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Color)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Category)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Category)
+                        </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+                    </dl>
+                </div>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Color)
-        </dt>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Color)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Type)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Type)
-        </dd>
-
-    </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.FurnitureId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.FurnitureId }) |
+        @Html.ActionLink("Back to List", "Index") |
+        @Html.ActionLink("Details", "Details", new { id = Model.FurnitureId }) |
+        @Html.ActionLink("Delete", "Delete", new { id = Model.FurnitureId }) |
+        @Html.ActionLink("Add to cart", "AddToShoppingCart", "CartList", new { id = Model.FurnitureId }, null)
+    </p>
+    </div>  
+</div>

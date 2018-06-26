@@ -1,4 +1,5 @@
 ﻿
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Show_project.Models
@@ -16,7 +17,9 @@ namespace Show_project.Models
 
         public string Color { get; set; }
 
-        public string Type { get; set; }
+        public int CategoryId { get; set; }
+
+        public string ImageUrl { get; set; }
 
         public Category Category { get; set; }
 

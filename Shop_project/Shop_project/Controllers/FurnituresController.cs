@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Shop_project.Models;
+using Shop_project.ViewModels;
 using Show_project.Models;
 
 namespace Shop_project.Controllers
@@ -16,10 +17,22 @@ namespace Shop_project.Controllers
         private ModelsDbContext db = new ModelsDbContext();
 
         // GET: Furnitures
-        [Authorize(Roles = "admin")]
-        public ActionResult Index()
+        //[Authorize(Roles = "admin")]
+        public ActionResult Index(string id)
         {
-            return View(db.Furnitures.ToList());
+            var furnitures = from s in db.Furnitures.OrderBy(s => s.Title) select s;
+
+            if (!String.IsNullOrEmpty(id))
+            {
+                furnitures = furnitures.Where(s => s.Title.Contains(id));
+            }
+
+            var furnituresViewModel = new FurnituresViewModel()
+            {
+                Furnitures =  furnitures.ToList(),
+                Title = "Наша мебель"
+            };
+            return View(furnituresViewModel);
         }
 
         // GET: Furnitures/Details/5
@@ -38,20 +51,20 @@ namespace Shop_project.Controllers
         }
 
         // GET: Furnitures/Create
-        [Authorize(Roles = "admin")]
+        //[Authorize(Roles = "admin")]
         public ActionResult Create()
         {
-            ViewBag.Category = new SelectList(db.Categories, "CategoryId", "Title");
+            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Title");
             return View();
         }
 
         // POST: Furnitures/Create
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "admin")]
+        //[Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "FurnitureId,Title,Price,Description,Color,Type,Category")] Furniture furniture)
+        public ActionResult Create([Bind(Include = "FurnitureId,Title,Price,Description,Color,Type,CategoryId")] Furniture furniture)
         {
             if (ModelState.IsValid)
             {
@@ -64,7 +77,7 @@ namespace Shop_project.Controllers
         }
 
         // GET: Furnitures/Edit/5
-        [Authorize(Roles = "admin")]
+        //[Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -82,7 +95,7 @@ namespace Shop_project.Controllers
         // POST: Furnitures/Edit/5
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "admin")]
+        //[Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "FurnitureId,Title,Price,Description,Color,Type")] Furniture furniture)
@@ -97,7 +110,7 @@ namespace Shop_project.Controllers
         }
 
         // GET: Furnitures/Delete/5
-        [Authorize(Roles = "admin")]
+        //[Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -113,7 +126,7 @@ namespace Shop_project.Controllers
         }
 
         // POST: Furnitures/Delete/5
-        [Authorize(Roles = "admin")]
+        //[Authorize(Roles = "admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
