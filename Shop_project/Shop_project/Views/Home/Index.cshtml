@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model IList<Show_project.Models.Furniture>
+@using Show_project.Models
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -14,112 +16,43 @@
     <div class="container content">
         <div class="row">
             <div class="col-md-4">
+
                 <div class="list-group">
-                    <a href="#" class="list-group-item">Type_of_furniture</a>
-                    <a href="#" class="list-group-item">Type_of_furniture</a>
-                    <a href="#" class="list-group-item">Type_of_furniture</a>
-                    <a href="#" class="list-group-item">Type_of_furniture</a>
-                    <a href="#" class="list-group-item">Type_of_furniture</a>
+                    @foreach (var category in ViewBag.Category as List<Category>)
+                    {
+                        <a href="#" class="list-group-item">@category.Title</a>
+                    }
+                   
                 </div>
             </div>
-            <div class="col-md-8 products">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div>
-                            <div>
-                                <a href="#"><img src="http://placehold.it/180x100" alt=""></a>
-                            </div>
-                            <p>
-                                <a href="#">Name_of_furniture</a>
-                            </p>
-                            <p>Description</p>
-                            <p>Price: 10.00 руб</p>
-                        </div>
-                    </div>
+            @foreach (var furniture in Model)
+            {
 
-                    <div class="col-sm-4">
-                        <div>
+                <div class="col-md-4 products well">
+                    <div class="row">
+                        <div class="col-sm-4">
                             <div>
-                                <a href="#"><img src="http://placehold.it/180x100" alt=""></a>
-                            </div>
-                            <p>
-                                <a href="#">Name_of_furniture</a>
-                            </p>
-                            <p>Description</p>
-                            <p>Price: 10.00 руб</p>
-                        </div>
-                    </div>
+                                <div>
+                                    <a href="#"><img src="http://placehold.it/180x100" alt=""></a>
+                                </div>
+                                <p>
 
-                    <div class="col-sm-4">
-                        <div>
-                            <div>
-                                <a href="#"><img src="http://placehold.it/180x100" alt=""></a>
+                                    <a href="#">@furniture.Title</a>
+                                </p>
+                                <p>@furniture.Description</p>
+                                <p>@furniture.Price.ToString("# руб")</p>
                             </div>
-                            <p>
-                                <a href="#">Name_of_furniture</a>
-                            </p>
-                            <p>Description</p>
-                            <p>Price: 10.00 руб</p>
                         </div>
-                    </div>
 
-                    <div class="col-sm-4">
-                        <div>
-                            <div>
-                                <a href="#"><img src="http://placehold.it/180x100" alt=""></a>
-                            </div>
-                            <p>
-                                <a href="#">Name_of_furniture</a>
-                            </p>
-                            <p>Description</p>
-                            <p>Price: 10.00 руб</p>
-                        </div>
                     </div>
-
-                    <div class="col-sm-4">
-                        <div>
-                            <div>
-                                <a href="#"><img src="http://placehold.it/180x100" alt=""></a>
-                            </div>
-                            <p>
-                                <a href="#">Name_of_furniture</a>
-                            </p>
-                            <p>Description</p>
-                            <p>Price: 10.00 руб</p>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4">
-                        <div>
-                            <div>
-                                <a href="#"><img src="http://placehold.it/180x100" alt=""></a>
-                            </div>
-                            <p>
-                                <a href="#">Name_of_furniture</a>
-                            </p>
-                            <p>Description</p>
-                            <p>Price: 10.00 руб</p>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4">
-                        <div>
-                            <div>
-                                <a href="#"><img src="http://placehold.it/180x100" alt=""></a>
-                            </div>
-                            <p>
-                                <a href="#">Name_of_furniture</a>
-                            </p>
-                            <p>Description</p>
-                            <p>Price: 10.00 руб</p>
-                        </div>
-                    </div>
-
-             
                 </div>
-            </div>
+
+            }
         </div>
     </div>
+
+   
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
