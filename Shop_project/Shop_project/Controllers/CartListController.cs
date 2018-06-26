@@ -32,7 +32,7 @@ namespace Shop_project.Controllers
             return View(viewModel);
         }
 
-        public ViewResult Index()
+        /*public ViewResult Index()
         {
             var items = cartList.GetCartItems();
             cartList.Cart = items;
@@ -44,7 +44,7 @@ namespace Shop_project.Controllers
             };
 
             return View(shoppingCartViewModel);
-        }
+        }*/
 
         public ActionResult AddToShoppingCart(int furnitureId)
         {
