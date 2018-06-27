@@ -27,7 +27,7 @@ namespace Shop_project.Controllers
         public ActionResult AddToShoppingCart(int id)
         {
             var addedFurniture = storeDb.Furnitures
-     .Single(furniture => furniture.FurnitureId == id);
+                .Single(furniture => furniture.FurnitureId == id);
 
             var cart = CartList.GetCart(this.HttpContext);
 
@@ -46,7 +46,7 @@ namespace Shop_project.Controllers
 
             // Get the name of the album to display confirmation
             string furniture = storeDb.Carts
-                .Single(item => item.RecordId == id).Furniture.Title;
+                .Single(item => item.RecordId == id).CartId;
 
             // Remove from cart
             int itemCount = cart.RemoveFromCart(id);

@@ -25,24 +25,26 @@
     </tr>
     @foreach (var item in Model.CartItems)
     {
-        <tr id="row-@item.RecordId">
-            <td>
-                @Html.ActionLink("ddds", "Details", "Furnitures", new { id = item.FurnitureId }, null)
-            </td>
-            <td>
-                
-            </td>
-            <td id="item-count-@item.RecordId">
-                @item.Amount
-            </td>
-            <td>
-                <a class="RemoveLink"
-                   data-id="@item.RecordId">
-                   @Html.ActionLink("Remove from cart", "RemoveFromShoppingCart", "CartList", new { id = item.FurnitureId }, null)
-                </a>
-            </td>
-        </tr>
+    <tr id="row-@item.RecordId">
+        <td>
+            @Html.ActionLink(item.CartId, "Details", "Furnitures", new { id = item.FurnitureId }, null)
+        </td>
+        <td>
+            
+        </td>
+        <td id="item-count-@item.RecordId">
+            @item.Amount
+        </td>
+
+        <td>
+            <a class="RemoveLink"
+               data-id="@item.RecordId">
+                @Html.ActionLink("Remove from cart", "RemoveFromShoppingCart", "CartList", new { id = item.FurnitureId }, null)
+            </a>
+        </td>
+    </tr>
     }
+
     <tr>
         <td>
             Total

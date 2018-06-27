@@ -11,8 +11,6 @@ namespace Shop_project.Models
     {
         ModelsDbContext storeDB = new ModelsDbContext();
 
-        public List<Cart> Cart { get; set; }
-
         public string CartListId { get; set; }
 
         public const string CartSessionKey = "CartId";
@@ -114,7 +112,7 @@ namespace Shop_project.Models
                               select (int?)cartItems.Amount *
                               cartItems.Furniture.Price).Sum();
 
-            return (double)total;
+            return total != null ? (double)total : (double)0;
         }
         public int CreateOrder(Order order)
         {
