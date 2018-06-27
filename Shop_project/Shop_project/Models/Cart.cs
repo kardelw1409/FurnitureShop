@@ -11,6 +11,8 @@ namespace Shop_project.Models
 
         public string CartId { get; set; }
 
+        public int FurnitureId { get; set; }
+
         public Furniture Furniture { get; set; }
 
         public DateTime DateCreated { get; set; }
