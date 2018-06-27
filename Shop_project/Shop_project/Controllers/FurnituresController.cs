@@ -64,7 +64,7 @@ namespace Shop_project.Controllers
         //[Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "FurnitureId,Title,Price,Description,Color,Type,CategoryId")] Furniture furniture)
+        public ActionResult Create([Bind(Include = "FurnitureId,Title,Price,Description,Color,ImageUrl,CategoryId")] Furniture furniture)
         {
             if (ModelState.IsValid)
             {
@@ -98,7 +98,7 @@ namespace Shop_project.Controllers
         //[Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "FurnitureId,Title,Price,Description,Color,Type")] Furniture furniture)
+        public ActionResult Edit([Bind(Include = "FurnitureId,Title,Price,Description,ImageUrl,Type")] Furniture furniture)
         {
             if (ModelState.IsValid)
             {
