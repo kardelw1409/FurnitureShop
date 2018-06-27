@@ -1,38 +1,56 @@
 ﻿@model Shop_project.ViewModels.CartListViewModel
 
-<h2>Your shopping cart</h2>
-<table class="table table-bordered table-striped">
-    <thead>
-        <tr>
-            <th>Selected amount</th>
-            <th>Name</th>
-            <th class="text-right">Price</th>
-            <th class="text-right">Subtotal</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var line in Model.CartItems)
-        {
-            <tr>
-                <td class="text-center">@line.Amount</td>
-                <td class="text-left">@line.Furniture.Title</td>
-                <td class="text-right">@line.Furniture.Price.ToString("c")</td>
-                <td class="text-right">
-                    @((line.Amount * line.Furniture.Price).ToString("c"))
-                </td>
-            </tr>
-        }
-    </tbody>
-    <tfoot>
-        <tr>
-            <td colspan="3" class="text-right">Total:</td>
-            <td class="text-right">
-                @Model.CartTotal.ToString("c")
+@{
+    ViewBag.Title = "Shopping Cart";
+}
+
+<h3>
+    <em>Review</em> your cart:
+</h3>
+
+<div id="update-message">
+</div>
+<table>
+    <tr>
+        <th>
+            Album Name
+        </th>
+        <th>
+            Price (each)
+        </th>
+        <th>
+            Quantity
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model.CartItems)
+    {
+        <tr id="row-@item.RecordId">
+            <td>
+                @Html.ActionLink("ddds", "Details", "Furnitures", new { id = item.FurnitureId }, null)
+            </td>
+            <td>
+                
+            </td>
+            <td id="item-count-@item.RecordId">
+                @item.Amount
+            </td>
+            <td>
+                <a class="RemoveLink"
+                   data-id="@item.RecordId">
+                   @Html.ActionLink("Remove from cart", "RemoveFromShoppingCart", "CartList", new { id = item.FurnitureId }, null)
+                </a>
             </td>
         </tr>
-    </tfoot>
+    }
+    <tr>
+        <td>
+            Total
+        </td>
+        <td></td>
+        <td></td>
+        <td id="cart-total">
+            @Model.CartTotal
+        </td>
+    </tr>
 </table>
-
-<div class="text-center">
-    <a class="btn btn-primary" asp-controller="Order" asp-action="Checkout">Check out now!</a>
-</div>

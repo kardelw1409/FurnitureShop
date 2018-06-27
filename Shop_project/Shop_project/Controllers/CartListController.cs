@@ -24,29 +24,32 @@ namespace Shop_project.Controllers
             return View(viewModel);
         }
 
-        public ActionResult AddToShoppingCart(int furnitureId)
+        public ActionResult AddToShoppingCart(int id)
         {
             var addedFurniture = storeDb.Furnitures
-     .Single(furniture => furniture.FurnitureId == furnitureId);
+     .Single(furniture => furniture.FurnitureId == id);
 
             var cart = CartList.GetCart(this.HttpContext);
 
-            cart.AddToCart(addedFurniture, 1);
+            cart.AddToCart(addedFurniture);
 
             return RedirectToAction("Index");
 
         }
 
-        public ActionResult RemoveFromShoppingCart(int furnitureId)
+        public ActionResult RemoveFromShoppingCart(int id)
         {
-            var selectedFurniture = storeDb.Furnitures.FirstOrDefault(s => s.FurnitureId == furnitureId);
+            var selectedFurniture = storeDb.Furnitures.FirstOrDefault(s => s.FurnitureId == id);
 
-            var cartList = CartList.GetCart(this.HttpContext);
+            // Remove the item from the cart
+            var cart = CartList.GetCart(this.HttpContext);
 
-            if (selectedFurniture != null)
-            {
-                cartList.RemoveFromCart(selectedFurniture);
-            }
+            // Get the name of the album to display confirmation
+            string furniture = storeDb.Carts
+                .Single(item => item.RecordId == id).Furniture.Title;
+
+            // Remove from cart
+            int itemCount = cart.RemoveFromCart(id);
 
             return RedirectToAction("Index");
         }

@@ -29,7 +29,7 @@ namespace Shop_project.Models
             return GetCart(controller.HttpContext);
         }
 
-        public void AddToCart(Furniture furniture, int amount)
+        public void AddToCart(Furniture furniture)
         {
             var cartItem = storeDB.Carts.SingleOrDefault(
                 c => c.CartId == CartListId
@@ -54,28 +54,30 @@ namespace Shop_project.Models
             storeDB.SaveChanges();
         }
 
-        public int RemoveFromCart(Furniture furniture)
+        public int RemoveFromCart(int id)
         {
-            var cartItem = storeDB.Carts.SingleOrDefault(
-                s => s.Furniture.FurnitureId == furniture.FurnitureId && s.CartId == CartListId);
-            var localAmount = 0;
+            // Get the cart
+            var cartItem = storeDB.Carts.Single(
+                cart => cart.CartId == CartListId
+                && cart.RecordId == id);
+
+            int itemCount = 0;
 
             if (cartItem != null)
             {
                 if (cartItem.Amount > 1)
                 {
                     cartItem.Amount--;
-                    localAmount = cartItem.Amount;
+                    itemCount = cartItem.Amount;
                 }
                 else
                 {
                     storeDB.Carts.Remove(cartItem);
                 }
+                // Save changes
+                storeDB.SaveChanges();
             }
-
-            storeDB.SaveChanges();
-
-            return localAmount;
+            return itemCount;
         }
         public void EmptyCart()
         {
