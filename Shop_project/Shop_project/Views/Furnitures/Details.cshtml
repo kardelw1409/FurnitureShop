@@ -1,74 +1,61 @@
 ﻿@model Show_project.Models.Furniture
+@using Show_project.Models
 
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Подробнее о товаре";
 }
 
-<h2>Details</h2>
 
 <div>
-    <h4>@Model</h4>
-    <hr />
-    <div class="container">
+    <div class="container well text-center">
         <div>
             <div class="row">
                 <div class="col">
-                    <img class="leftside" src="@Model.ImageUrl" height="600" width="500" />
+                    <img class="leftside" src="@Model.ImageUrl" height="300" width="250" />
                 </div>
                 <div class="col">
                     <dl>
                         <dt>
-                            @Html.DisplayNameFor(model => model.Title)
+                            Название товара: 
                         </dt>
                         <dd>
                             @Html.DisplayFor(model => model.Title)
                         </dd>
                         <dt>
-                            @Html.DisplayNameFor(model => model.Price)
+                            Цена: 
                         </dt>
                         <dd>
-                            @Html.DisplayFor(model => model.Price)
+                            @Html.DisplayFor(model => model.Price) (руб.)
                         </dd>
                         <dt>
-                            @Html.DisplayNameFor(model => model.Description)
+                            Описание:
                         </dt>
                         <dd>
                             @Html.DisplayFor(model => model.Description)
                         </dd>
 
                         <dt>
-                            @Html.DisplayNameFor(model => model.Color)
+                            Цвет: 
                         </dt>
                         <dd>
                             @Html.DisplayFor(model => model.Color)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.Category)
-                        </dt>
-                        <dd>
-                            @Html.DisplayFor(model => model.Category)
-                        </dd>
-
-
+                        </dd>                   
                     </dl>
                 </div>
             </div>
 
         </div>
+       <form action="/home">
+           <input type="submit" class="btn btn-success" value="Вернутся к каталогу" />
+       </form>
+           
 
+            <button type="submit" class="btn btn-success" >
+                Добавить в корзину
+            </button>
+
+       
     </div>
-
+    
 </div>
-<div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.FurnitureId }) |
-        @Html.ActionLink("Back to List", "Index") |
-        @Html.ActionLink("Details", "Details", new { id = Model.FurnitureId }) |
-        @Html.ActionLink("Delete", "Delete", new { id = Model.FurnitureId }) |
-        @Html.ActionLink("Add to cart", "AddToShoppingCart", "CartList", new { id = 1 }, null)
-        
-
-    </p>
-</div>  
