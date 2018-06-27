@@ -22,32 +22,30 @@
                     {
                         <a href="#" class="list-group-item">@category.Title</a>
                     }
-                   
                 </div>
             </div>
-            @foreach (var furniture in Model)
+            <div class="col-md-offset-4">
+                @foreach (var furniture in Model)
             {
-
-                <div class="col-md-4 products well">
-                    <div class="row">
-                        <div class="col-sm-4">
+                    <div class="col-md-6 products well">
+                        <div class="row">
                             <div>
                                 <div>
                                     <img src="@furniture.ImageUrl" alt="" height="300" width="340">
                                 </div>
                                 <p>
-
-                                    <a href="#">@furniture.Title</a>
-                                </p>
+                                    <a asp-controller="Furnitrure" asp-action="Details" asp-route-id="@furniture.FurnitureId">
+                                        @furniture.Title
+                                    </a>
+</p>
                                 <p>@furniture.Description</p>
                                 <p>@furniture.Price.ToString("# руб")</p>
                             </div>
                         </div>
-
+                     </div>
+             }
                     </div>
-                </div>
 
-            }
         </div>
     </div>
 

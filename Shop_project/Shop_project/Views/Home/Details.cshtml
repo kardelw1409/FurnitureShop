@@ -1,0 +1,28 @@
+﻿@model Furniture
+@using Show_project.Models
+
+
+    <div class="container">
+        <div>
+            <div class="row">
+                <div class="col">
+                    <img class="leftside" src="@Model.ImageUrl" height="600" width="500" />
+                </div>
+                <div class="col">
+                    <div>
+                        <h2>@Model.Color</h2>
+                    </div>
+                    <div>
+                        <h5>Description: @Model.Description</h5>
+                    </div>
+                    <div>
+                        <p>Riding style: @Model.Price</p>
+                    </div>
+                    <div>
+                        <p>@Model.Category</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
