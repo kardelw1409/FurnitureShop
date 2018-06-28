@@ -1,7 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -9,7 +6,6 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Shop_project.Models;
-using System.Collections.Generic;
 
 namespace Shop_project.Controllers
 {
@@ -73,6 +69,7 @@ namespace Shop_project.Controllers
             {
                 return View(model);
             }
+
 
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
@@ -436,6 +433,14 @@ namespace Shop_project.Controllers
             }
 
             base.Dispose(disposing);
+        }
+
+        private void MigrateShoppingCart(string UserName)
+        {
+            var cart = CartList.GetCart(this.HttpContext);
+
+            cart.MigrateCart(UserName);
+            Session[CartList.CartSessionKey] = UserName;
         }
 
         #region Вспомогательные приложения

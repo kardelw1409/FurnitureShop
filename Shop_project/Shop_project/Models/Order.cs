@@ -8,6 +8,8 @@ namespace Shop_project.Models
         [Key]
         public int OrderId { get; set; }
 
+        public String Username { get; set; }
+
         public String FirstName { get; set; }
 
         public String LastName { get; set; }
@@ -19,9 +21,7 @@ namespace Shop_project.Models
         public String PhoneNumber { get; set; }
 
         public DateTime TimeOfOrder { get; set; }
-
-        public double OrderPrice { get; set; }
-
+        
         public double Total { get; set; }
 
     }

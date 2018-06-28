@@ -7,7 +7,9 @@
 <h3>
     <em>Review</em> your cart:
 </h3>
-
+<p class="button">
+    @Html.ActionLink("Checkout", "AddressAndPayment", "Checkout")
+</p>
 <div id="update-message">
 </div>
 <table>
@@ -56,5 +58,5 @@
             @Model.CartTotal
         </td>
     </tr>
-    @Html.ActionLink(item.Furniture.Title, "Details", "Furnitures", new { id = item.FurnitureId }, null)
+
 </table>
