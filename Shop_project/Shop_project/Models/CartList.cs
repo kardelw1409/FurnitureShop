@@ -30,8 +30,7 @@ namespace Shop_project.Models
         public void AddToCart(Furniture furniture)
         {
             var cartItem = storeDB.Carts.SingleOrDefault(
-                c => c.CartId == CartListId
-                && c.FurnitureId == furniture.FurnitureId);
+                c => c.Furniture.FurnitureId == furniture.FurnitureId && c.CartId == CartListId);
 
             if (cartItem == null)
             {
@@ -40,8 +39,9 @@ namespace Shop_project.Models
                     FurnitureId = furniture.FurnitureId,
                     CartId = CartListId,
                     Amount = 1,
-                    DateCreated = DateTime.Now
+                    DateCreated = DateTime.Now,
                 };
+                
                 storeDB.Carts.Add(cartItem);
             }
             else
@@ -112,7 +112,7 @@ namespace Shop_project.Models
                               select (int?)cartItems.Amount *
                               cartItems.Furniture.Price).Sum();
 
-            return total != null ? (double)total : (double)0;
+            return total ?? 0;
         }
         public int CreateOrder(Order order)
         {

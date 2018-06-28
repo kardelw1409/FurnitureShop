@@ -13,11 +13,11 @@ namespace Shop_project.Models
 
         public int FurnitureId { get; set; }
 
-        public Furniture Furniture { get; set; }
-
         public DateTime DateCreated { get; set; }
 
         public int Amount { get; set; }
+
+        public virtual Furniture Furniture { get; set; }
 
     }
 }
