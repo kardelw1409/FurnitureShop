@@ -20,6 +20,7 @@ namespace Shop_project.Controllers
                 CartItems = cart.GetCartItems(),
                 CartTotal = cart.GetTotal()
             };
+            ViewBag.List = viewModel;
             // Return the view
             return View(viewModel);
         }

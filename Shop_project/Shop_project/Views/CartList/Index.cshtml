@@ -1,5 +1,5 @@
 ﻿@model Shop_project.ViewModels.CartListViewModel
-
+@using Shop_project.Models
 @{
     ViewBag.Title = "Shopping Cart";
 }
@@ -13,26 +13,26 @@
 <table>
     <tr>
         <th>
-            Album Name
+            Имя
         </th>
         <th>
-            Price (each)
+            Цена
         </th>
         <th>
-            Quantity
+            Количество
         </th>
         <th></th>
     </tr>
-    @foreach (var item in Model.CartItems)
+    @foreach (Cart item in Model.CartItems)
     {
     <tr id="row-@item.RecordId">
         <td>
-            @Html.ActionLink(item.CartId, "Details", "Furnitures", new { id = item.FurnitureId }, null)
+            @Html.ActionLink(item.Furniture.Title, "Details", "Furnitures", new { id = item.FurnitureId }, null)
         </td>
         <td>
-            
+            @item.Furniture.Price
         </td>
-        <td id="item-count-@item.RecordId">
+        <td id="item-count-@item.RecordId">`
             @item.Amount
         </td>
 
@@ -47,7 +47,7 @@
 
     <tr>
         <td>
-            Total
+            Итог
         </td>
         <td></td>
         <td></td>

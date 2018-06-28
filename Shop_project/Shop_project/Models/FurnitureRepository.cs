@@ -8,20 +8,13 @@ namespace Shop_project.Models
     {
         private ModelsDbContext modelsDbContext;
 
-        private IEnumerable<Furniture> Snowboards { get; }
+        private IEnumerable<Furniture> Furnitures { get; }
 
         public FurnitureRepository(ModelsDbContext modelsDbContext)
         {
             this.modelsDbContext = modelsDbContext;
         }
 
-        public IEnumerable<Furniture> Furnitures
-        {
-            get
-            {
-                return modelsDbContext.Furnitures;
-            }
-        }
 
         public IEnumerable<Furniture> GetAllSnowboards()
         {
