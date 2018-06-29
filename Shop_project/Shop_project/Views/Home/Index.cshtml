@@ -9,24 +9,20 @@
     <title>Каталог товаров</title>
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
- 
 </head>
 <body>
     <div class="container content">
         <div class="row">
             <div class="col-md-4">
-
                 <div class="list-group">
                     @foreach (var category in ViewBag.Category as List<Category>)
                     {
                         <a href="#@category.Title   " class="list-group-item">@category.Title</a>
                     }
-                   
                 </div>
             </div>
             @foreach (var furniture in Model)
             {
-
                 <div class="col-md-4 products well">
                     <div class="row">
                         <div class="col-sm-4">
@@ -35,7 +31,6 @@
                                     <img src="@furniture.ImageUrl" alt="" height="300" width="340">
                                 </div>
                                 <p>
-
                                     <a href="/Furnitures/Details/@furniture.FurnitureId">@furniture.Title</a>
                                 </p>
                                 <p>@furniture.Description</p>
@@ -53,16 +48,6 @@
    
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-
-    <script>
-$(function(){
-
-
-
-});
-    </script>
 
 </body>
 </html>
