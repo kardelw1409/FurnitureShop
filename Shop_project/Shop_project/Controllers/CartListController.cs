@@ -42,14 +42,11 @@ namespace Shop_project.Controllers
         {
             var selectedFurniture = storeDb.Furnitures.FirstOrDefault(s => s.FurnitureId == id);
 
-            // Remove the item from the cart
             var cart = CartList.GetCart(this.HttpContext);
 
-            // Get the name of the album to display confirmation
             string furniture = storeDb.Carts
                 .Single(item => item.RecordId == id).CartId;
 
-            // Remove from cart
             int itemCount = cart.RemoveFromCart(id);
 
             return RedirectToAction("Index");
