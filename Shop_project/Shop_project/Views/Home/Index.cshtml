@@ -9,23 +9,30 @@
     <title>Каталог товаров</title>
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        .layout{
+                padding-bottom: 40px; /* Поле снизу от текста */
+        }
+    </style>
 </head>
 <body>
+    <div class="col-md-4 row">
+        <div class="list-group">
+            @foreach (var category in ViewBag.Category as List<Category>)
+            {
+                <a href="@category.Title" class="list-group-item">@category.Title</a>
+            }
+        </div>
+    </div>
+
     <div class="container content">
         <div class="row">
-            <div class="col-md-4">
-                <div class="list-group">
-                    @foreach (var category in ViewBag.Category as List<Category>)
-                    {
-                        <a href="@category.Title" class="list-group-item">@category.Title</a>
-                    }
-                </div>
-            </div>
+            
             @foreach (var furniture in Model)
             {
-                <div class="col-md-4 products well">
+                <div class="col-md-4  products well">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-12">
                             <div>
                                 <div>
                                     <img src="@furniture.ImageUrl" alt="" height="300" width="340">
@@ -33,7 +40,11 @@
                                 <p>
                                     <a href="/Furnitures/Details/@furniture.FurnitureId">@furniture.Title</a>
                                 </p>
-                                <p>@furniture.Description</p>
+                                <div class="layout">
+                                    <p>@furniture.Description</p>
+
+                                </div>
+
                                 <p>@furniture.Price.ToString("# руб")</p>
                             </div>
                         </div>
